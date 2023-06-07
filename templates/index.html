@@ -2,24 +2,28 @@
 <html>
 <head>
     <title>Task List</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Task List</h1>
-    <form action="/add" method="post">
-        <input type="text" name="task" required>
-        <input type="submit" value="Add Task">
-    </form>
-    <br>
-    <ul>
-        {% for task in tasks %}
-        <li>
-            {{ task.task }}
-            <form action="/delete" method="post" style="display:inline;">
-                <input type="hidden" name="task_id" value="{{ task.id }}">
-                <input type="submit" value="Delete">
+    <div class="container">
+        <div class="header">
+            <h1>Task List</h1>
+            <form action="/add" method="post">
+                <textarea name="task" rows="4" placeholder="Enter a task" required></textarea>
+                <input type="submit" value="Add Task">
             </form>
-        </li>
-        {% endfor %}
-    </ul>
+        </div>
+        <div class="task-list">
+            {% for task in tasks %}
+            <div class="task-card">
+                <span>{{ task.task }}</span>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="task_id" value="{{ task.id }}">
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
