@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <form action="/add" method="post">
+        <input type="text" name="task" required>
+        <input type="submit" value="Add Task">
+    </form>
+    <br>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task.task }}
+            <form action="/delete" method="post" style="display:inline;">
+                <input type="hidden" name="task_id" value="{{ task.id }}">
+                <input type="submit" value="Delete">
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
